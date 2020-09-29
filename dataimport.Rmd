@@ -59,6 +59,19 @@ pulse_df
 pulse_df = janitor::clean_names(pulse_df)
 ```
 
+## Comparison with Base R 
+
+What about 'read.csv'.... ? why is it read_csv
+- read.csv in in R but you shouldn't use it! 
+
+```{r}
+litters_base = read.csv("data/FAS_litters.csv")
+litters_readr = read_csv("data/FAS_litters.csv")
+
+litters_base
+litters_readr
+```
+
 
 
 
