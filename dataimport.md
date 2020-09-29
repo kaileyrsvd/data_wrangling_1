@@ -5,14 +5,14 @@ Data\_Import
 library(tidyverse)
 ```
 
-    ## -- Attaching packages --------------------------- tidyverse 1.3.0 --
+    ## -- Attaching packages ---------------------------- tidyverse 1.3.0 --
 
     ## v ggplot2 3.3.2     v purrr   0.3.4
     ## v tibble  3.0.3     v dplyr   1.0.2
     ## v tidyr   1.1.2     v stringr 1.4.0
     ## v readr   1.3.1     v forcats 0.5.0
 
-    ## -- Conflicts ------------------------------ tidyverse_conflicts() --
+    ## -- Conflicts ------------------------------- tidyverse_conflicts() --
     ## x dplyr::filter() masks stats::filter()
     ## x dplyr::lag()    masks stats::lag()
 
@@ -339,3 +339,73 @@ Export the mlb sub-table.
 ``` r
 write_csv(mlb_df, "./data/mlb_subtable.csv")
 ```
+
+\#Learning Assessment
+
+``` r
+pups_df = read_csv("./data/FAS_pups.csv", col_types = "ciiiii")
+pups_df
+```
+
+    ## # A tibble: 313 x 6
+    ##    `Litter Number`   Sex `PD ears` `PD eyes` `PD pivot` `PD walk`
+    ##    <chr>           <int>     <int>     <int>      <int>     <int>
+    ##  1 #85                 1         4        13          7        11
+    ##  2 #85                 1         4        13          7        12
+    ##  3 #1/2/95/2           1         5        13          7         9
+    ##  4 #1/2/95/2           1         5        13          8        10
+    ##  5 #5/5/3/83/3-3       1         5        13          8        10
+    ##  6 #5/5/3/83/3-3       1         5        14          6         9
+    ##  7 #5/4/2/95/2         1        NA        14          5         9
+    ##  8 #4/2/95/3-3         1         4        13          6         8
+    ##  9 #4/2/95/3-3         1         4        13          7         9
+    ## 10 #2/2/95/3-2         1         4        NA          8        10
+    ## # ... with 303 more rows
+
+``` r
+skimr::skim(pups_df)
+```
+
+|                                                  |          |
+| :----------------------------------------------- | :------- |
+| Name                                             | pups\_df |
+| Number of rows                                   | 313      |
+| Number of columns                                | 6        |
+| \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_   |          |
+| Column type frequency:                           |          |
+| character                                        | 1        |
+| numeric                                          | 5        |
+| \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ |          |
+| Group variables                                  | None     |
+
+Data summary
+
+**Variable type: character**
+
+| skim\_variable | n\_missing | complete\_rate | min | max | empty | n\_unique | whitespace |
+| :------------- | ---------: | -------------: | --: | --: | ----: | --------: | ---------: |
+| Litter Number  |          0 |              1 |   3 |  15 |     0 |        49 |          0 |
+
+**Variable type: numeric**
+
+| skim\_variable | n\_missing | complete\_rate |  mean |   sd | p0 | p25 | p50 | p75 | p100 | hist  |
+| :------------- | ---------: | -------------: | ----: | ---: | -: | --: | --: | --: | ---: | :---- |
+| Sex            |          0 |           1.00 |  1.50 | 0.50 |  1 |   1 |   2 |   2 |    2 | ▇▁▁▁▇ |
+| PD ears        |         18 |           0.94 |  3.68 | 0.59 |  2 |   3 |   4 |   4 |    5 | ▁▅▁▇▁ |
+| PD eyes        |         13 |           0.96 | 12.99 | 0.62 | 12 |  13 |  13 |  13 |   15 | ▂▇▁▂▁ |
+| PD pivot       |         13 |           0.96 |  7.09 | 1.51 |  4 |   6 |   7 |   8 |   12 | ▂▇▂▂▁ |
+| PD walk        |          0 |           1.00 |  9.50 | 1.34 |  7 |   9 |   9 |  10 |   14 | ▆▇▇▂▁ |
+
+``` r
+pups_df$Sex
+```
+
+    ##   [1] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+    ##  [38] 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2
+    ##  [75] 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+    ## [112] 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1 1 1
+    ## [149] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2
+    ## [186] 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1
+    ## [223] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1
+    ## [260] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2
+    ## [297] 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2

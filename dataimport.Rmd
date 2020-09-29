@@ -80,6 +80,22 @@ Export the mlb sub-table.
 write_csv(mlb_df, "./data/mlb_subtable.csv")
 ```
 
+#Learning Assessment
+
+```{r}
+pups_df = read_csv("./data/FAS_pups.csv", col_types = "ciiiii")
+pups_df
+
+skimr::skim(pups_df)
+
+pups_df$Sex
+```
+
+
+
+
+
+
 
 
 
